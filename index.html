@@ -136,10 +136,16 @@
                     <p>✓ Riwayat Transaksi & Pembayaran Online</p>
                 </div>
 
-                <button onclick="openLoginModal()" class="w-full py-4 rounded-2xl font-extrabold text-base text-slate-950 animated-rainbow-bg hover:scale-105 transition-all shadow-xl shadow-cyan-500/30 flex items-center justify-center gap-3">
-                    <i class="fa-solid fa-right-to-bracket text-lg"></i>
-                    <span>Login / Masuk Sekarang</span>
-                </button>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button onclick="openLoginModal()" class="flex-1 py-4 px-4 rounded-2xl font-extrabold text-sm text-slate-950 animated-rainbow-bg hover:scale-105 transition-all shadow-xl shadow-cyan-500/30 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-right-to-bracket text-base"></i>
+                        <span>Login / Masuk</span>
+                    </button>
+                    <button onclick="loginAsGuest()" class="flex-1 py-4 px-4 rounded-2xl font-bold text-sm bg-slate-900 hover:bg-slate-800 border border-cyan-500/50 text-cyan-300 transition-all flex items-center justify-center gap-2 shadow-lg">
+                        <i class="fa-solid fa-bolt text-yellow-400"></i>
+                        <span>Akses Instan Demo</span>
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -540,7 +546,7 @@
                     </div>
                     <p class="text-xs text-slate-500">&copy; 2026 gilangranggaid. All rights reserved. Solusi Digital & Karir Terpercaya.</p>
                     <div class="flex items-center space-x-4 text-slate-400 text-lg">
-                        <a href="#" class="hover:text-cyan-400 transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://wa.me/6283895288348" target="_blank" class="hover:text-cyan-400 transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
                         <a href="#" class="hover:text-cyan-400 transition-colors"><i class="fa-brands fa-instagram"></i></a>
                         <a href="#" class="hover:text-cyan-400 transition-colors"><i class="fa-brands fa-tiktok"></i></a>
                     </div>
@@ -561,6 +567,10 @@
                 <p class="text-xs text-slate-400 mt-1">Wajib Login untuk Mengakses Fitur & Layanan</p>
             </div>
             <div class="space-y-3">
+                <button onclick="loginAsGuest()" class="w-full py-3 px-4 rounded-xl bg-cyan-500/20 border border-cyan-400/50 hover:bg-cyan-500/30 transition-all font-bold text-sm text-cyan-300 flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-bolt text-yellow-400"></i>
+                    <span>Masuk Instan (Mode Demo Preview)</span>
+                </button>
                 <button onclick="loginWithProvider('google')" class="w-full py-3 px-4 rounded-xl bg-slate-900 border border-white/10 hover:border-red-500/50 hover:bg-slate-800 transition-all font-semibold text-sm text-slate-200 flex items-center justify-center gap-3">
                     <i class="fa-brands fa-google text-red-400 text-lg"></i><span>Lanjutkan dengan Google</span>
                 </button>
@@ -748,11 +758,50 @@
                 try {
                     showToast("Membuka jendela Google Sign-In...");
                     const provider = new GoogleAuthProvider();
-                    await signInWithPopup(auth, provider);
-                    showToast("Login Google Berhasil!");
+                    const result = await signInWithPopup(auth, provider);
+                    const user = result.user;
+                    
+                    window.currentUser = {
+                        uid: user.uid,
+                        displayName: user.displayName || user.email.split('@')[0],
+                        email: user.email,
+                        photoURL: user.photoURL || `https://placehold.co/100x100/7a00ff/ffffff?text=G`,
+                        provider: 'google.com'
+                    };
+                    localStorage.setItem('gilang_demo_user', JSON.stringify(window.currentUser));
+                    unlockWebsiteAccess();
+                    closeLoginModal();
+                    renderAuthUI();
+                    showToast("Login Google Asli Berhasil!");
                 } catch (error) {
-                    console.error("Google Auth Error:", error);
-                    showToast("Gagal Login Google: " + (error.message || "Periksa domain yang diizinkan di Firebase"));
+                    console.warn("Google Auth Error:", error);
+                    let errMsg = "Login Google Gagal: " + (error.message || error.code);
+                    if (error.code === 'auth/unauthorized-domain') {
+                        errMsg = "Domain ini belum di-whitelist di Firebase (Authorized Domains)!";
+                    } else if (error.code === 'auth/popup-blocked') {
+                        errMsg = "Popup diblokir browser! Izinkan popup untuk login Google.";
+                    } else if (error.code === 'auth/popup-closed-by-user') {
+                        errMsg = "Jendela login Google ditutup.";
+                    }
+                    showToast(errMsg);
+
+                    // Beralih ke demo hanya jika dibuka dalam iFrame preview atau domain belum di-whitelist
+                    if (window.self !== window.top || error.code === 'auth/unauthorized-domain') {
+                        setTimeout(() => {
+                            showToast("Beralih ke Demo (iFrame / Domain belum di-whitelist di Firebase)...");
+                            window.currentUser = {
+                                uid: 'google_demo_' + Math.random().toString(36).substring(2, 8),
+                                displayName: 'Google User (Demo)',
+                                email: 'user.google@gmail.com',
+                                photoURL: 'https://placehold.co/100x100/ea4335/ffffff?text=G',
+                                provider: 'google.com'
+                            };
+                            localStorage.setItem('gilang_demo_user', JSON.stringify(window.currentUser));
+                            unlockWebsiteAccess();
+                            closeLoginModal();
+                            renderAuthUI();
+                        }, 1500);
+                    }
                 }
             } else {
                 showToast(`Login via ${providerName.toUpperCase()}...`);
@@ -771,6 +820,21 @@
                     renderAuthUI();
                 }, 600);
             }
+        };
+
+        window.loginAsGuest = function() {
+            window.currentUser = {
+                uid: 'demo_user_' + Math.random().toString(36).substring(2, 8),
+                displayName: 'Pengguna Demo',
+                email: 'demo@gilangranggaid.com',
+                photoURL: 'https://placehold.co/100x100/00e5ff/ffffff?text=Demo',
+                provider: 'guest'
+            };
+            localStorage.setItem('gilang_demo_user', JSON.stringify(window.currentUser));
+            unlockWebsiteAccess();
+            closeLoginModal();
+            renderAuthUI();
+            showToast("Berhasil masuk dalam Mode Demo Instan!");
         };
 
         window.handleManualLogin = function(e) {
@@ -1027,7 +1091,7 @@
             let total = window.cart.reduce((acc, curr) => acc + curr.price, 0);
 
             let message = `Halo Admin *gilangranggaid*, saya ingin memesan:\n\n${itemsText}\n\n*Total:* Rp ${total.toLocaleString('id-ID')}\n*Catatan:* ${note || '-'}`;
-            window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(message)}`, '_blank');
+            window.open(`https://wa.me/6283895288348?text=${encodeURIComponent(message)}`, '_blank');
             window.cart = [];
             updateCartBadge();
             toggleCartModal();
