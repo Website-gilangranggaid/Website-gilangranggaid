@@ -108,15 +108,18 @@
 </head>
 <body class="relative min-h-screen text-slate-100 selection:bg-cyan-500 selection:text-white">
 
-    <div class="fixed inset-0 pointer-events-none z-0">
-        <div class="absolute inset-0 animated-rainbow-bg opacity-30"></div>
-        <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-[60px]"></div>
-        <canvas id="bgParticles" class="absolute inset-0 w-full h-full opacity-40"></canvas>
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <!-- Space Wallpaper High Quality Image -->
+        <div class="absolute inset-0 bg-cover bg-center opacity-45 mix-blend-screen scale-105 transition-all duration-1000" style="background-image: url('https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=1920&auto=format&fit=crop');"></div>
+        <!-- Deep Space Cosmic Vignette Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-slate-950/80 to-slate-950"></div>
+        <div class="absolute inset-0 animated-rainbow-bg opacity-20"></div>
+        <div class="absolute inset-0 bg-slate-950/30 backdrop-blur-[12px]"></div>
+        <canvas id="bgParticles" class="absolute inset-0 w-full h-full opacity-70"></canvas>
     </div>
 
     <div id="app" class="relative z-10 flex flex-col min-h-screen">
         
-        <!-- Auth Guard Overlay -->
         <div id="authGuardOverlay" class="fixed inset-0 z-50 flex flex-col items-center justify-center p-4 bg-slate-950/85 backdrop-blur-xl transition-all duration-500">
             <div class="glass-card rainbow-border-box max-w-lg w-full p-8 text-center rounded-3xl shadow-2xl animate-float">
                 <div class="w-20 h-20 rounded-3xl animated-rainbow-bg mx-auto flex items-center justify-center shadow-2xl shadow-cyan-500/40 mb-6">
@@ -136,20 +139,13 @@
                     <p>✓ Riwayat Transaksi & Pembayaran Online</p>
                 </div>
 
-                <div class="flex flex-col sm:flex-row gap-3">
-                    <button onclick="openLoginModal()" class="flex-1 py-4 px-4 rounded-2xl font-extrabold text-sm text-slate-950 animated-rainbow-bg hover:scale-105 transition-all shadow-xl shadow-cyan-500/30 flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-right-to-bracket text-base"></i>
-                        <span>Login / Masuk</span>
-                    </button>
-                    <button onclick="loginAsGuest()" class="flex-1 py-4 px-4 rounded-2xl font-bold text-sm bg-slate-900 hover:bg-slate-800 border border-cyan-500/50 text-cyan-300 transition-all flex items-center justify-center gap-2 shadow-lg">
-                        <i class="fa-solid fa-bolt text-yellow-400"></i>
-                        <span>Akses Instan Demo</span>
-                    </button>
-                </div>
+                <button onclick="openLoginModal()" class="w-full py-4 px-4 rounded-2xl font-extrabold text-sm text-slate-950 animated-rainbow-bg hover:scale-105 transition-all shadow-xl shadow-cyan-500/30 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-right-to-bracket text-base"></i>
+                    <span>Login / Masuk dengan Google</span>
+                </button>
             </div>
         </div>
 
-        <!-- Navbar -->
         <header class="sticky top-0 z-40 backdrop-blur-md bg-slate-950/70 border-b border-white/10">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center justify-between h-20">
@@ -168,6 +164,10 @@
                         <a href="#cv-simulator" class="hover:text-cyan-400 transition-colors flex items-center gap-1.5">
                             <span>Screening CV PDF</span>
                             <span class="px-2 py-0.5 text-[10px] bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 rounded-full font-bold uppercase">AI Ready</span>
+                        </a>
+                        <a href="#games-section" class="hover:text-cyan-400 transition-colors flex items-center gap-1.5 text-yellow-300 font-bold">
+                            <i class="fa-solid fa-gamepad text-cyan-400 animate-pulse"></i>
+                            <span>Mini Games</span>
                         </a>
                         <a href="#testimoni" class="hover:text-cyan-400 transition-colors">Testimoni</a>
                         <a href="#faq" class="hover:text-cyan-400 transition-colors">FAQ</a>
@@ -190,15 +190,14 @@
             </div>
         </header>
 
-        <!-- Main Website Content -->
         <div id="mainContentWrapper" class="content-locked transition-all duration-500">
             <main class="flex-grow">
                 <!-- Hero Section -->
                 <section class="relative py-20 lg:py-28 overflow-hidden text-center">
                     <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-cyan-500/30 text-cyan-300 text-xs sm:text-sm font-semibold mb-8 animate-pulse-slow">
                         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                        <i class="fa-solid fa-bolt text-yellow-400"></i>
-                        <span>Platform Solusi Digital & Pengembangan Karir #1</span>
+                        <i class="fa-solid fa-user-astronaut text-cyan-400"></i>
+                        <span>Platform Solusi Digital & Karir Masa Depan #1</span>
                     </div>
 
                     <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
@@ -369,7 +368,6 @@
                     </div>
                 </section>
 
-                <!-- REAL PDF & AI CV SCREENING SECTION -->
                 <section id="cv-simulator" class="py-16 relative">
                     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div class="rainbow-border-box p-6 sm:p-10">
@@ -457,6 +455,92 @@
                     </div>
                 </section>
 
+                <!-- SECTION MINI GAMES: PESAWAT & IKAN -->
+                <section id="games-section" class="py-16 relative border-t border-white/10">
+                    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="text-center mb-8">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-300 text-xs font-bold mb-3">
+                                <i class="fa-solid fa-gamepad text-yellow-400"></i> Zone Arcade & Mini Games
+                            </div>
+                            <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+                                Istirahat Sejenak & <span class="rainbow-text">Mainkan Game</span>
+                            </h2>
+                            <p class="text-slate-400 text-xs sm:text-sm mt-2 max-w-xl mx-auto">
+                                Nikmati game interaktif buatan gilangranggaid langsung di browser HP maupun Laptop!
+                            </p>
+                        </div>
+
+                        <!-- Game Tab Controls -->
+                        <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
+                            <button id="tabSpaceBtn" onclick="switchGameTab('space')" class="px-6 py-3 rounded-2xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25 scale-105">
+                                <i class="fa-solid fa-rocket text-base"></i>
+                                <span>Game Pesawat (Space Defender)</span>
+                            </button>
+                            <button id="tabFishBtn" onclick="switchGameTab('fish')" class="px-6 py-3 rounded-2xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 bg-slate-900 border border-white/10 text-slate-300 hover:border-pink-500/50 hover:text-white">
+                                <i class="fa-solid fa-fish text-base text-pink-400"></i>
+                                <span>Game Ikan Laut (Petualangan Ikan)</span>
+                            </button>
+                        </div>
+
+                        <!-- Game Arena Glass Card -->
+                        <div class="glass-card rainbow-border-box p-4 sm:p-6 rounded-3xl relative overflow-hidden">
+                            <!-- HUD Top Bar -->
+                            <div class="flex items-center justify-between bg-slate-950/80 p-3 sm:p-4 rounded-2xl border border-white/10 mb-4 text-xs sm:text-sm">
+                                <div class="flex items-center gap-4">
+                                    <div class="flex items-center gap-1.5 font-bold text-cyan-400">
+                                        <i class="fa-solid fa-trophy text-yellow-400"></i>
+                                        <span>Skor: <strong id="gameScoreText" class="text-white font-extrabold text-base">0</strong></span>
+                                    </div>
+                                    <div class="flex items-center gap-1.5 font-bold text-emerald-400">
+                                        <i class="fa-solid fa-heart text-red-500"></i>
+                                        <span>Nyawa: <strong id="gameLivesText" class="text-white font-extrabold text-base">3</strong></span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span class="text-slate-400 hidden sm:inline text-xs">High Score: <strong id="gameHighScoreText" class="text-yellow-400">0</strong></span>
+                                    <button onclick="toggleAudioMute()" id="audioMuteBtn" class="p-2 rounded-xl bg-slate-900 border border-white/10 hover:border-cyan-400 text-slate-300">
+                                        <i id="audioMuteIcon" class="fa-solid fa-volume-high text-cyan-400"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Canvas Container -->
+                            <div class="relative w-full aspect-video min-h-[320px] max-h-[500px] bg-slate-950 rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                                <canvas id="miniGameCanvas" class="w-full h-full block cursor-crosshair touch-none"></canvas>
+
+                                <!-- Game Start / Game Over Overlay -->
+                                <div id="gameOverlay" class="absolute inset-0 bg-slate-950/90 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center z-20">
+                                    <div id="gameOverlayIcon" class="w-16 h-16 rounded-2xl animated-rainbow-bg flex items-center justify-center text-slate-950 text-3xl mb-4 shadow-xl">
+                                        <i class="fa-solid fa-rocket"></i>
+                                    </div>
+                                    <h3 id="gameOverlayTitle" class="text-2xl sm:text-3xl font-extrabold text-white mb-2">Space Defender 🚀</h3>
+                                    <p id="gameOverlayDesc" class="text-slate-300 text-xs sm:text-sm max-w-md mb-6 leading-relaxed">
+                                        Hancurkan asteroid dan pesawat alien musuh! Gunakan panah keyboard / tombol sentuh untuk bergerak dan menembak.
+                                    </p>
+                                    <button onclick="startActiveGame()" class="px-8 py-3.5 rounded-2xl animated-rainbow-bg text-slate-950 font-extrabold text-sm hover:scale-105 transition-transform shadow-xl shadow-cyan-500/30 flex items-center gap-2">
+                                        <i class="fa-solid fa-play"></i>
+                                        <span id="gameStartBtnText">Mulai Permainan</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Mobile Touch Controls -->
+                            <div class="mt-4 p-3 bg-slate-950/60 rounded-2xl border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+                                <div class="text-slate-400 text-[11px] text-center sm:text-left">
+                                    <span class="font-bold text-cyan-400">Kontrol Keyboard:</span> Tombol Panah / WASD untuk bergerak | Spasi untuk Tembak (Game Pesawat).
+                                </div>
+                                <div class="flex items-center gap-2 w-full sm:w-auto justify-center">
+                                    <button touchstart="handleMobileTouch('left', true)" touchend="handleMobileTouch('left', false)" mousedown="handleMobileTouch('left', true)" mouseup="handleMobileTouch('left', false)" class="w-10 h-10 rounded-xl bg-slate-900 border border-white/10 text-cyan-400 font-bold active:bg-cyan-500 active:text-slate-950 transition-all select-none"><i class="fa-solid fa-arrow-left"></i></button>
+                                    <button touchstart="handleMobileTouch('right', true)" touchend="handleMobileTouch('right', false)" mousedown="handleMobileTouch('right', true)" mouseup="handleMobileTouch('right', false)" class="w-10 h-10 rounded-xl bg-slate-900 border border-white/10 text-cyan-400 font-bold active:bg-cyan-500 active:text-slate-950 transition-all select-none"><i class="fa-solid fa-arrow-right"></i></button>
+                                    <button touchstart="handleMobileTouch('up', true)" touchend="handleMobileTouch('up', false)" mousedown="handleMobileTouch('up', true)" mouseup="handleMobileTouch('up', false)" class="w-10 h-10 rounded-xl bg-slate-900 border border-white/10 text-cyan-400 font-bold active:bg-cyan-500 active:text-slate-950 transition-all select-none"><i class="fa-solid fa-arrow-up"></i></button>
+                                    <button touchstart="handleMobileTouch('down', true)" touchend="handleMobileTouch('down', false)" mousedown="handleMobileTouch('down', true)" mouseup="handleMobileTouch('down', false)" class="w-10 h-10 rounded-xl bg-slate-900 border border-white/10 text-cyan-400 font-bold active:bg-cyan-500 active:text-slate-950 transition-all select-none"><i class="fa-solid fa-arrow-down"></i></button>
+                                    <button touchstart="handleMobileTouch('action', true)" touchend="handleMobileTouch('action', false)" mousedown="handleMobileTouch('action', true)" mouseup="handleMobileTouch('action', false)" class="px-4 h-10 rounded-xl animated-rainbow-bg text-slate-950 font-bold text-xs active:scale-95 transition-all select-none flex items-center gap-1"><i class="fa-solid fa-crosshairs"></i> Action</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 <section id="testimoni" class="py-20 relative">
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
@@ -509,7 +593,6 @@
                     </div>
                 </section>
 
-                <!-- FAQ Section -->
                 <section id="faq" class="py-16 relative border-t border-white/10">
                     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                         <h2 class="text-3xl font-extrabold text-center mb-10">Pertanyaan Umum (FAQ)</h2>
@@ -555,7 +638,7 @@
         </div>
     </div>
 
-    <!-- Modals -->
+    <!-- LOGIN MODAL -->
     <div id="loginModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
         <div class="glass-card rainbow-border-box w-full max-w-md p-6 sm:p-8 relative rounded-2xl shadow-2xl animate-float">
             <button id="closeLoginModalBtn" onclick="closeLoginModal()" class="hidden absolute top-4 right-4 text-slate-400 hover:text-white p-2">
@@ -564,29 +647,13 @@
             <div class="text-center mb-6">
                 <div class="w-12 h-12 rounded-2xl animated-rainbow-bg mx-auto flex items-center justify-center text-slate-950 font-extrabold text-2xl mb-3 shadow-lg shadow-cyan-500/20">g</div>
                 <h3 class="text-2xl font-bold text-white">Masuk ke <span class="rainbow-text">gilangranggaid</span></h3>
-                <p class="text-xs text-slate-400 mt-1">Wajib Login untuk Mengakses Fitur & Layanan</p>
+                <p class="text-xs text-slate-400 mt-1">Silakan Login Menggunakan Akun Google Anda</p>
             </div>
             <div class="space-y-3">
-                <button onclick="loginAsGuest()" class="w-full py-3 px-4 rounded-xl bg-cyan-500/20 border border-cyan-400/50 hover:bg-cyan-500/30 transition-all font-bold text-sm text-cyan-300 flex items-center justify-center gap-3">
-                    <i class="fa-solid fa-bolt text-yellow-400"></i>
-                    <span>Masuk Instan (Mode Demo Preview)</span>
-                </button>
-                <button onclick="loginWithProvider('google')" class="w-full py-3 px-4 rounded-xl bg-slate-900 border border-white/10 hover:border-red-500/50 hover:bg-slate-800 transition-all font-semibold text-sm text-slate-200 flex items-center justify-center gap-3">
+                <button onclick="loginWithProvider('google')" class="w-full py-3.5 px-4 rounded-xl bg-slate-900 border border-white/10 hover:border-red-500/50 hover:bg-slate-800 transition-all font-semibold text-sm text-slate-200 flex items-center justify-center gap-3">
                     <i class="fa-brands fa-google text-red-400 text-lg"></i><span>Lanjutkan dengan Google</span>
                 </button>
-                <button onclick="loginWithProvider('facebook')" class="w-full py-3 px-4 rounded-xl bg-slate-900 border border-white/10 hover:border-blue-500/50 hover:bg-slate-800 transition-all font-semibold text-sm text-slate-200 flex items-center justify-center gap-3">
-                    <i class="fa-brands fa-facebook text-blue-500 text-lg"></i><span>Lanjutkan dengan Facebook</span>
-                </button>
             </div>
-            <div class="relative my-6 text-center">
-                <hr class="border-white/10">
-                <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-900 px-3 text-[10px] text-slate-400 uppercase font-semibold">Atau Username</span>
-            </div>
-            <form onsubmit="handleManualLogin(event)" class="space-y-3">
-                <input id="loginUsername" type="text" required class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-white/10 focus:border-cyan-400 text-sm text-slate-200 outline-none" placeholder="Username Anda">
-                <input id="loginPassword" type="password" required class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-white/10 focus:border-cyan-400 text-sm text-slate-200 outline-none" placeholder="••••••••">
-                <button type="submit" class="w-full py-3 rounded-xl animated-rainbow-bg text-slate-950 font-bold text-sm hover:brightness-110 transition-all shadow-lg shadow-cyan-500/20 mt-2">Masuk Sekarang</button>
-            </form>
         </div>
     </div>
 
@@ -646,13 +713,12 @@
         </div>
     </div>
 
-    <!-- TOAST -->
+    <!-- TOAST NOTIFICATION -->
     <div id="toast" class="hidden fixed bottom-6 right-6 z-50 px-5 py-3 rounded-xl glass-card border-cyan-500/50 text-white text-sm font-semibold shadow-2xl flex items-center gap-3 transition-all duration-300 transform translate-y-10 opacity-0">
         <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
         <span id="toastMessage">Pemberitahuan</span>
     </div>
 
-    <!-- FIREBASE INITIALIZATION & APPLICATION LOGIC -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
@@ -785,7 +851,6 @@
                     }
                     showToast(errMsg);
 
-                    // Beralih ke demo hanya jika dibuka dalam iFrame preview atau domain belum di-whitelist
                     if (window.self !== window.top || error.code === 'auth/unauthorized-domain') {
                         setTimeout(() => {
                             showToast("Beralih ke Demo (iFrame / Domain belum di-whitelist di Firebase)...");
@@ -822,38 +887,6 @@
             }
         };
 
-        window.loginAsGuest = function() {
-            window.currentUser = {
-                uid: 'demo_user_' + Math.random().toString(36).substring(2, 8),
-                displayName: 'Pengguna Demo',
-                email: 'demo@gilangranggaid.com',
-                photoURL: 'https://placehold.co/100x100/00e5ff/ffffff?text=Demo',
-                provider: 'guest'
-            };
-            localStorage.setItem('gilang_demo_user', JSON.stringify(window.currentUser));
-            unlockWebsiteAccess();
-            closeLoginModal();
-            renderAuthUI();
-            showToast("Berhasil masuk dalam Mode Demo Instan!");
-        };
-
-        window.handleManualLogin = function(e) {
-            e.preventDefault();
-            const username = document.getElementById('loginUsername').value;
-            window.currentUser = {
-                uid: 'user_' + Math.random().toString(36).substring(2, 9),
-                displayName: username,
-                email: `${username}@gilangranggaid.com`,
-                photoURL: `https://placehold.co/100x100/7a00ff/ffffff?text=${username[0].toUpperCase()}`,
-                provider: 'manual'
-            };
-            localStorage.setItem('gilang_demo_user', JSON.stringify(window.currentUser));
-            unlockWebsiteAccess();
-            closeLoginModal();
-            showToast(`Selamat datang, ${username}!`);
-            renderAuthUI();
-        };
-
         window.logoutUser = async function() {
             if (auth) {
                 try { await signOut(auth); } catch(e){}
@@ -866,7 +899,6 @@
             showToast("Anda telah keluar akun.");
         };
 
-        // PDF FILE EXTRACTION HANDLER
         window.handlePdfFileUpload = async function(event) {
             const file = event.target.files[0];
             if (!file) return;
@@ -904,7 +936,6 @@
             }
         };
 
-        // REAL AI / ATS EVALUATOR
         window.analyzeCV = async function() {
             const text = document.getElementById('cvInputText').value.trim();
             if (!text) {
@@ -1020,69 +1051,80 @@
     </script>
 
     <script>
-        function addToCart(title, price, code) {
-            if (!window.currentUser) {
-                openLoginModal();
-                showToast("Silakan login terlebih dahulu untuk belanja!");
-                return;
-            }
-            window.cart.push({ title, price, code });
-            updateCartBadge();
-            showToast(`${title} ditambahkan ke keranjang!`);
-        }
-
         function updateCartBadge() {
             const badge = document.getElementById('cartBadge');
-            if (window.cart.length > 0) {
+            if (!badge) return;
+            const count = window.cart ? window.cart.length : 0;
+            badge.innerText = count;
+            if (count > 0) {
                 badge.classList.remove('hidden');
-                badge.innerText = window.cart.length;
             } else {
                 badge.classList.add('hidden');
             }
         }
 
+        function renderCartUI() {
+            const container = document.getElementById('cartItemsContainer');
+            const totalEl = document.getElementById('cartTotalPrice');
+            if (!container || !totalEl) return;
+
+            if (!window.cart || window.cart.length === 0) {
+                container.innerHTML = `<p class="text-xs text-slate-400 italic text-center py-4">Keranjang Anda masih kosong.</p>`;
+                totalEl.innerText = 'Rp 0';
+                return;
+            }
+
+            let total = 0;
+            container.innerHTML = window.cart.map((item, index) => {
+                total += item.price;
+                return `
+                    <div class="flex items-center justify-between p-3 rounded-xl bg-slate-950 border border-white/10 text-xs">
+                        <div>
+                            <p class="font-bold text-white">${item.title}</p>
+                            <p class="text-cyan-400 font-semibold">Rp ${item.price.toLocaleString('id-ID')}</p>
+                        </div>
+                        <button onclick="removeFromCart(${index})" class="p-1.5 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-all">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+            }).join('');
+
+            totalEl.innerText = `Rp ${total.toLocaleString('id-ID')}`;
+        }
+
         function toggleCartModal() {
             const modal = document.getElementById('cartModal');
-            const container = document.getElementById('cartItemsContainer');
-            const totalPrice = document.getElementById('cartTotalPrice');
-
+            if (!modal) return;
             if (modal.classList.contains('hidden')) {
-                if (window.cart.length === 0) {
-                    container.innerHTML = `<p class="text-xs text-slate-500 italic text-center py-6">Keranjang Anda kosong.</p>`;
-                    totalPrice.innerText = `Rp 0`;
-                } else {
-                    let total = 0;
-                    let html = '';
-                    window.cart.forEach((item, index) => {
-                        total += item.price;
-                        html += `
-                            <div class="flex items-center justify-between p-3 rounded-xl bg-slate-950 border border-white/10 text-xs">
-                                <div>
-                                    <p class="font-bold text-white">${item.title}</p>
-                                    <p class="text-cyan-400 font-semibold mt-0.5">Rp ${item.price.toLocaleString('id-ID')}</p>
-                                </div>
-                                <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-300 p-1"><i class="fa-solid fa-trash-can"></i></button>
-                            </div>
-                        `;
-                    });
-                    container.innerHTML = html;
-                    totalPrice.innerText = `Rp ${total.toLocaleString('id-ID')}`;
-                }
+                renderCartUI();
                 modal.classList.remove('hidden');
             } else {
                 modal.classList.add('hidden');
             }
         }
 
+        function addToCart(title, price, code) {
+            if (!window.currentUser) {
+                openLoginModal();
+                showToast("Silakan login terlebih dahulu untuk belanja!");
+                return;
+            }
+            if (!window.cart) window.cart = [];
+            window.cart.push({ title, price, code });
+            updateCartBadge();
+            showToast(`${title} ditambahkan ke keranjang!`);
+        }
+
         function removeFromCart(index) {
+            if (!window.cart) return;
             window.cart.splice(index, 1);
             updateCartBadge();
-            toggleCartModal();
-            toggleCartModal();
+            renderCartUI();
         }
 
         function checkoutToWhatsApp() {
-            if (window.cart.length === 0) {
+            if (!window.cart || window.cart.length === 0) {
                 showToast("Keranjang Anda kosong!");
                 return;
             }
@@ -1091,10 +1133,42 @@
             let total = window.cart.reduce((acc, curr) => acc + curr.price, 0);
 
             let message = `Halo Admin *gilangranggaid*, saya ingin memesan:\n\n${itemsText}\n\n*Total:* Rp ${total.toLocaleString('id-ID')}\n*Catatan:* ${note || '-'}`;
+            
+            // Redirect langsung ke WhatsApp dengan nomor 6283895288348
             window.open(`https://wa.me/6283895288348?text=${encodeURIComponent(message)}`, '_blank');
+            
             window.cart = [];
             updateCartBadge();
             toggleCartModal();
+        }
+
+        function submitReview(e) {
+            e.preventDefault();
+            const name = document.getElementById('reviewAuthorName').value;
+            const role = document.getElementById('reviewAuthorRole').value;
+            const content = document.getElementById('reviewContent').value;
+            
+            if (!name || !content) return;
+
+            const grid = document.getElementById('reviewsGrid');
+            if (grid) {
+                const newReview = document.createElement('div');
+                newReview.className = "glass-card p-6 rounded-2xl flex flex-col justify-between border border-cyan-500/30";
+                newReview.innerHTML = `
+                    <p class="text-slate-300 text-sm italic mb-6">"${content}"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">${name.charAt(0).toUpperCase()}</div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">${name}</h4>
+                            <p class="text-[11px] text-slate-400">${role || 'Pelanggan'}</p>
+                        </div>
+                    </div>
+                `;
+                grid.prepend(newReview);
+            }
+            closeReviewModal();
+            showToast("Terima kasih! Ulasan Anda berhasil ditambahkan.");
+            e.target.reset();
         }
 
         function openLoginModal() { document.getElementById('loginModal').classList.remove('hidden'); }
@@ -1134,19 +1208,24 @@
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
 
-            const particles = Array.from({ length: 45 }, () => ({
+            const particles = Array.from({ length: 75 }, () => ({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
-                radius: Math.random() * 2 + 1,
-                vx: (Math.random() - 0.5) * 0.5,
-                vy: (Math.random() - 0.5) * 0.5,
-                color: ['#00e5ff', '#ff0055', '#7a00ff', '#ffbe00'][Math.floor(Math.random() * 4)]
+                radius: Math.random() * 2.5 + 0.5,
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: (Math.random() - 0.5) * 0.4,
+                alpha: Math.random(),
+                pulse: Math.random() * 0.02 + 0.005,
+                color: ['#00e5ff', '#ff0055', '#7a00ff', '#ffbe00', '#ffffff', '#38bdf8'][Math.floor(Math.random() * 6)]
             }));
 
             function animateParticles() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 particles.forEach(p => {
                     p.x += p.vx; p.y += p.vy;
+                    p.alpha += p.pulse;
+                    if (p.alpha > 1 || p.alpha < 0.2) p.pulse = -p.pulse;
+
                     if (p.x < 0) p.x = canvas.width;
                     if (p.x > canvas.width) p.x = 0;
                     if (p.y < 0) p.y = canvas.height;
@@ -1155,13 +1234,492 @@
                     ctx.beginPath();
                     ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
                     ctx.fillStyle = p.color;
-                    ctx.shadowBlur = 8;
+                    ctx.globalAlpha = Math.max(0.2, Math.min(1, p.alpha));
+                    ctx.shadowBlur = 10;
                     ctx.shadowColor = p.color;
                     ctx.fill();
                 });
+                ctx.globalAlpha = 1;
                 requestAnimationFrame(animateParticles);
             }
             animateParticles();
+        });
+    </script>
+
+    <script>
+        /* WEB AUDIO SYNTHESIZER FOR SOUND EFFECTS */
+        let audioCtx = null;
+        let isMuted = false;
+
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function toggleAudioMute() {
+            isMuted = !isMuted;
+            const icon = document.getElementById('audioMuteIcon');
+            if (isMuted) {
+                icon.className = 'fa-solid fa-volume-xmark text-red-400';
+            } else {
+                icon.className = 'fa-solid fa-volume-high text-cyan-400';
+            }
+        }
+
+        function playSoundEffect(type) {
+            if (isMuted) return;
+            try {
+                const ctx = getAudioContext();
+                const now = ctx.currentTime;
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+
+                if (type === 'laser') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(600, now);
+                    osc.frequency.exponentialRampToValueAtTime(100, now + 0.15);
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.15);
+                    osc.start(now);
+                    osc.stop(now + 0.15);
+                } else if (type === 'explosion') {
+                    osc.type = 'square';
+                    osc.frequency.setValueAtTime(120, now);
+                    osc.frequency.exponentialRampToValueAtTime(20, now + 0.3);
+                    gain.gain.setValueAtTime(0.3, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.3);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                } else if (type === 'eat') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(300, now);
+                    osc.frequency.exponentialRampToValueAtTime(700, now + 0.12);
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.12);
+                    osc.start(now);
+                    osc.stop(now + 0.12);
+                } else if (type === 'gameover') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(400, now);
+                    osc.frequency.linearRampToValueAtTime(100, now + 0.5);
+                    gain.gain.setValueAtTime(0.3, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.5);
+                    osc.start(now);
+                    osc.stop(now + 0.5);
+                }
+            } catch (e) {
+                console.warn('Audio play error:', e);
+            }
+        }
+
+        /* MINI GAME SYSTEM ENGINE */
+        let activeGameMode = 'space'; // 'space' or 'fish'
+        let gameRunning = false;
+        let animationFrameId = null;
+
+        let gameCanvas = null;
+        let gameCtx = null;
+
+        let score = 0;
+        let lives = 3;
+        let highScores = { space: 0, fish: 0 };
+
+        // Key states
+        const keys = { left: false, right: false, up: false, down: false, action: false };
+
+        function handleMobileTouch(btn, isPressed) {
+            keys[btn] = isPressed;
+            if (btn === 'action' && isPressed && activeGameMode === 'space' && gameRunning) {
+                shootSpaceLaser();
+            }
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (['ArrowLeft', 'KeyA'].includes(e.code)) keys.left = true;
+            if (['ArrowRight', 'KeyD'].includes(e.code)) keys.right = true;
+            if (['ArrowUp', 'KeyW'].includes(e.code)) keys.up = true;
+            if (['ArrowDown', 'KeyS'].includes(e.code)) keys.down = true;
+            if (['Space', 'KeyK'].includes(e.code)) {
+                keys.action = true;
+                if (gameRunning && activeGameMode === 'space') shootSpaceLaser();
+            }
+        });
+
+        window.addEventListener('keyup', (e) => {
+            if (['ArrowLeft', 'KeyA'].includes(e.code)) keys.left = false;
+            if (['ArrowRight', 'KeyD'].includes(e.code)) keys.right = false;
+            if (['ArrowUp', 'KeyW'].includes(e.code)) keys.up = false;
+            if (['ArrowDown', 'KeyS'].includes(e.code)) keys.down = false;
+            if (['Space', 'KeyK'].includes(e.code)) keys.action = false;
+        });
+
+        function initCanvasSize() {
+            if (!gameCanvas) return;
+            const container = gameCanvas.parentElement;
+            gameCanvas.width = container.clientWidth || 800;
+            gameCanvas.height = container.clientHeight || 450;
+        }
+
+        window.addEventListener('resize', () => {
+            initCanvasSize();
+        });
+
+        function switchGameTab(mode) {
+            activeGameMode = mode;
+            gameRunning = false;
+            if (animationFrameId) cancelAnimationFrame(animationFrameId);
+
+            const tabSpace = document.getElementById('tabSpaceBtn');
+            const tabFish = document.getElementById('tabFishBtn');
+
+            if (mode === 'space') {
+                tabSpace.className = "px-6 py-3 rounded-2xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25 scale-105";
+                tabFish.className = "px-6 py-3 rounded-2xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 bg-slate-900 border border-white/10 text-slate-300 hover:border-pink-500/50 hover:text-white";
+
+                document.getElementById('gameOverlayTitle').innerText = "Space Defender 🚀";
+                document.getElementById('gameOverlayDesc').innerText = "Hancurkan asteroid dan pesawat alien! Gunakan kontrol keyboard / sentuh untuk mengemudikan pesawat.";
+                document.getElementById('gameOverlayIcon').innerHTML = `<i class="fa-solid fa-rocket"></i>`;
+            } else {
+                tabFish.className = "px-6 py-3 rounded-2xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-lg shadow-pink-500/25 scale-105";
+                tabSpace.className = "px-6 py-3 rounded-2xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 bg-slate-900 border border-white/10 text-slate-300 hover:border-cyan-500/50 hover:text-white";
+
+                document.getElementById('gameOverlayTitle').innerText = "Petualangan Ikan Laut 🐟";
+                document.getElementById('gameOverlayDesc').innerText = "Makan ikan-ikan yang lebih kecil untuk tumbuh besar, dan hindari hiu predator samudera!";
+                document.getElementById('gameOverlayIcon').innerHTML = `<i class="fa-solid fa-fish text-pink-400"></i>`;
+            }
+
+            document.getElementById('gameOverlay').classList.remove('hidden');
+            document.getElementById('gameHighScoreText').innerText = highScores[mode] || 0;
+            document.getElementById('gameScoreText').innerText = 0;
+            document.getElementById('gameLivesText').innerText = 3;
+            renderGameInitialPreview();
+        }
+
+        /* GAME 1: SPACE SHOOTER STATE */
+        let spacePlayer = { x: 0, y: 0, w: 36, h: 36, speed: 6 };
+        let spaceLasers = [];
+        let spaceEnemies = [];
+        let spaceStars = [];
+
+        function initSpaceGame() {
+            initCanvasSize();
+            spacePlayer.x = gameCanvas.width / 2 - 18;
+            spacePlayer.y = gameCanvas.height - 60;
+            spaceLasers = [];
+            spaceEnemies = [];
+            spaceStars = Array.from({ length: 40 }, () => ({
+                x: Math.random() * gameCanvas.width,
+                y: Math.random() * gameCanvas.height,
+                s: Math.random() * 2 + 1,
+                vy: Math.random() * 2 + 1
+            }));
+        }
+
+        function shootSpaceLaser() {
+            if (!gameRunning || activeGameMode !== 'space') return;
+            spaceLasers.push({
+                x: spacePlayer.x + spacePlayer.w / 2 - 2,
+                y: spacePlayer.y,
+                w: 4,
+                h: 12,
+                vy: -9
+            });
+            playSoundEffect('laser');
+        }
+
+        function updateSpaceGame() {
+            // Player movement
+            if (keys.left && spacePlayer.x > 0) spacePlayer.x -= spacePlayer.speed;
+            if (keys.right && spacePlayer.x + spacePlayer.w < gameCanvas.width) spacePlayer.x += spacePlayer.speed;
+            if (keys.up && spacePlayer.y > 0) spacePlayer.y -= spacePlayer.speed;
+            if (keys.down && spacePlayer.y + spacePlayer.h < gameCanvas.height) spacePlayer.y += spacePlayer.speed;
+
+            // Move stars
+            spaceStars.forEach(s => {
+                s.y += s.vy;
+                if (s.y > gameCanvas.height) s.y = 0;
+            });
+
+            // Move lasers
+            for (let i = spaceLasers.length - 1; i >= 0; i--) {
+                const l = spaceLasers[i];
+                l.y += l.vy;
+                if (l.y < -20) spaceLasers.splice(i, 1);
+            }
+
+            // Spawn enemies
+            if (Math.random() < 0.035) {
+                spaceEnemies.push({
+                    x: Math.random() * (gameCanvas.width - 30),
+                    y: -40,
+                    w: 32,
+                    h: 32,
+                    vy: Math.random() * 2 + 1.5,
+                    color: ['#00e5ff', '#ff0055', '#ffbe00', '#a855f7'][Math.floor(Math.random() * 4)],
+                    hp: 1
+                });
+            }
+
+            // Move enemies & check collision
+            for (let i = spaceEnemies.length - 1; i >= 0; i--) {
+                const e = spaceEnemies[i];
+                e.y += e.vy;
+
+                // Laser vs Enemy
+                for (let j = spaceLasers.length - 1; j >= 0; j--) {
+                    const l = spaceLasers[j];
+                    if (l.x < e.x + e.w && l.x + l.w > e.x && l.y < e.y + e.h && l.y + l.h > e.y) {
+                        spaceLasers.splice(j, 1);
+                        spaceEnemies.splice(i, 1);
+                        score += 10;
+                        playSoundEffect('explosion');
+                        document.getElementById('gameScoreText').innerText = score;
+                        break;
+                    }
+                }
+
+                // Enemy vs Player
+                if (e && e.x < spacePlayer.x + spacePlayer.w && e.x + e.w > spacePlayer.x &&
+                    e.y < spacePlayer.y + spacePlayer.h && e.y + e.h > spacePlayer.y) {
+                    spaceEnemies.splice(i, 1);
+                    lives--;
+                    playSoundEffect('explosion');
+                    document.getElementById('gameLivesText').innerText = lives;
+                    if (lives <= 0) {
+                        endActiveGame();
+                        return;
+                    }
+                }
+
+                if (e && e.y > gameCanvas.height + 40) {
+                    spaceEnemies.splice(i, 1);
+                }
+            }
+        }
+
+        function drawSpaceGame() {
+            gameCtx.fillStyle = '#0b0f19';
+            gameCtx.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
+
+            // Draw stars
+            gameCtx.fillStyle = '#ffffff';
+            spaceStars.forEach(s => {
+                gameCtx.fillRect(s.x, s.y, s.s, s.s);
+            });
+
+            // Draw player ship
+            gameCtx.fillStyle = '#00e5ff';
+            gameCtx.beginPath();
+            gameCtx.moveTo(spacePlayer.x + spacePlayer.w / 2, spacePlayer.y);
+            gameCtx.lineTo(spacePlayer.x + spacePlayer.w, spacePlayer.y + spacePlayer.h);
+            gameCtx.lineTo(spacePlayer.x + spacePlayer.w / 2, spacePlayer.y + spacePlayer.h - 8);
+            gameCtx.lineTo(spacePlayer.x, spacePlayer.y + spacePlayer.h);
+            gameCtx.closePath();
+            gameCtx.shadowBlur = 12;
+            gameCtx.shadowColor = '#00e5ff';
+            gameCtx.fill();
+
+            // Draw lasers
+            gameCtx.fillStyle = '#ff0055';
+            gameCtx.shadowColor = '#ff0055';
+            spaceLasers.forEach(l => {
+                gameCtx.fillRect(l.x, l.y, l.w, l.h);
+            });
+
+            // Draw enemies (asteroids/alien ships)
+            spaceEnemies.forEach(e => {
+                gameCtx.fillStyle = e.color;
+                gameCtx.shadowColor = e.color;
+                gameCtx.beginPath();
+                gameCtx.arc(e.x + e.w / 2, e.y + e.h / 2, e.w / 2, 0, Math.PI * 2);
+                gameCtx.fill();
+            });
+            gameCtx.shadowBlur = 0;
+        }
+
+        /* GAME 2: FISH GAME STATE */
+        let fishPlayer = { x: 0, y: 0, r: 16, speed: 4 };
+        let fishItems = [];
+        let fishBubbles = [];
+
+        function initFishGame() {
+            initCanvasSize();
+            fishPlayer.x = gameCanvas.width / 2;
+            fishPlayer.y = gameCanvas.height / 2;
+            fishPlayer.r = 16;
+            fishItems = [];
+            fishBubbles = Array.from({ length: 25 }, () => ({
+                x: Math.random() * gameCanvas.width,
+                y: Math.random() * gameCanvas.height,
+                r: Math.random() * 3 + 1,
+                vy: Math.random() * 1.5 + 0.5
+            }));
+        }
+
+        function updateFishGame() {
+            // Player fish movement
+            if (keys.left && fishPlayer.x - fishPlayer.r > 0) fishPlayer.x -= fishPlayer.speed;
+            if (keys.right && fishPlayer.x + fishPlayer.r < gameCanvas.width) fishPlayer.x += fishPlayer.speed;
+            if (keys.up && fishPlayer.y - fishPlayer.r > 0) fishPlayer.y -= fishPlayer.speed;
+            if (keys.down && fishPlayer.y + fishPlayer.r < gameCanvas.height) fishPlayer.y += fishPlayer.speed;
+
+            // Bubbles
+            fishBubbles.forEach(b => {
+                b.y -= b.vy;
+                if (b.y < -10) b.y = gameCanvas.height + 10;
+            });
+
+            // Spawn fish
+            if (Math.random() < 0.04) {
+                const isLeft = Math.random() < 0.5;
+                const spawnR = Math.random() < 0.75 ? Math.random() * (fishPlayer.r - 2) + 6 : fishPlayer.r + Math.random() * 20 + 8;
+                fishItems.push({
+                    x: isLeft ? -30 : gameCanvas.width + 30,
+                    y: Math.random() * (gameCanvas.height - 40) + 20,
+                    r: spawnR,
+                    vx: isLeft ? (Math.random() * 1.5 + 1) : -(Math.random() * 1.5 + 1),
+                    color: spawnR < fishPlayer.r ? '#10b981' : '#ef4444'
+                });
+            }
+
+            // Move fish items & check collision
+            for (let i = fishItems.length - 1; i >= 0; i--) {
+                const f = fishItems[i];
+                f.x += f.vx;
+
+                const dx = fishPlayer.x - f.x;
+                const dy = fishPlayer.y - f.y;
+                const dist = Math.hypot(dx, dy);
+
+                if (dist < fishPlayer.r + f.r) {
+                    if (f.r <= fishPlayer.r) {
+                        // Eat smaller fish
+                        score += Math.round(f.r);
+                        fishPlayer.r = Math.min(fishPlayer.r + 0.4, 40);
+                        fishItems.splice(i, 1);
+                        playSoundEffect('eat');
+                        document.getElementById('gameScoreText').innerText = score;
+                    } else {
+                        // Eaten by bigger fish
+                        fishItems.splice(i, 1);
+                        lives--;
+                        playSoundEffect('explosion');
+                        document.getElementById('gameLivesText').innerText = lives;
+                        if (lives <= 0) {
+                            endActiveGame();
+                            return;
+                        }
+                    }
+                }
+
+                if (f && (f.x < -50 || f.x > gameCanvas.width + 50)) {
+                    fishItems.splice(i, 1);
+                }
+            }
+        }
+
+        function drawFishGame() {
+            gameCtx.fillStyle = '#031124';
+            gameCtx.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
+
+            // Draw ocean bubbles
+            gameCtx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+            fishBubbles.forEach(b => {
+                gameCtx.beginPath();
+                gameCtx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+                gameCtx.fill();
+            });
+
+            // Draw player fish
+            gameCtx.fillStyle = '#ec4899';
+            gameCtx.shadowBlur = 10;
+            gameCtx.shadowColor = '#ec4899';
+            gameCtx.beginPath();
+            gameCtx.arc(fishPlayer.x, fishPlayer.y, fishPlayer.r, 0, Math.PI * 2);
+            gameCtx.fill();
+            // Tail
+            gameCtx.beginPath();
+            gameCtx.moveTo(fishPlayer.x - fishPlayer.r, fishPlayer.y);
+            gameCtx.lineTo(fishPlayer.x - fishPlayer.r - 12, fishPlayer.y - 8);
+            gameCtx.lineTo(fishPlayer.x - fishPlayer.r - 12, fishPlayer.y + 8);
+            gameCtx.closePath();
+            gameCtx.fill();
+
+            // Draw other fish
+            fishItems.forEach(f => {
+                gameCtx.fillStyle = f.color;
+                gameCtx.shadowColor = f.color;
+                gameCtx.beginPath();
+                gameCtx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+                gameCtx.fill();
+            });
+            gameCtx.shadowBlur = 0;
+        }
+
+        function gameLoop() {
+            if (!gameRunning) return;
+
+            if (activeGameMode === 'space') {
+                updateSpaceGame();
+                drawSpaceGame();
+            } else {
+                updateFishGame();
+                drawFishGame();
+            }
+
+            animationFrameId = requestAnimationFrame(gameLoop);
+        }
+
+        function startActiveGame() {
+            score = 0;
+            lives = 3;
+            document.getElementById('gameScoreText').innerText = 0;
+            document.getElementById('gameLivesText').innerText = 3;
+            document.getElementById('gameOverlay').classList.add('hidden');
+
+            gameRunning = true;
+            if (activeGameMode === 'space') {
+                initSpaceGame();
+            } else {
+                initFishGame();
+            }
+            gameLoop();
+        }
+
+        function endActiveGame() {
+            gameRunning = false;
+            playSoundEffect('gameover');
+            if (score > (highScores[activeGameMode] || 0)) {
+                highScores[activeGameMode] = score;
+                document.getElementById('gameHighScoreText').innerText = score;
+            }
+
+            const overlay = document.getElementById('gameOverlay');
+            document.getElementById('gameOverlayTitle').innerText = "Game Over!";
+            document.getElementById('gameOverlayDesc').innerText = `Skor Akhir Anda: ${score} Poin. Permainan yang seru!`;
+            document.getElementById('gameStartBtnText').innerText = "Main Lagi";
+            overlay.classList.remove('hidden');
+        }
+
+        function renderGameInitialPreview() {
+            gameCanvas = document.getElementById('miniGameCanvas');
+            if (!gameCanvas) return;
+            gameCtx = gameCanvas.getContext('2d');
+            initCanvasSize();
+
+            gameCtx.fillStyle = activeGameMode === 'space' ? '#0b0f19' : '#031124';
+            gameCtx.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
+        }
+
+        window.addEventListener('load', () => {
+            renderGameInitialPreview();
         });
     </script>
 </body>
