@@ -17,7 +17,8 @@
 ---
 
 ## 🌐 Hubungi Saya
-
-  <a href="mailto:ranggalinggani@gmail.com">
+EMAIL        :ranggalinggani@gmail.com
+WHATSAPP     :083895288348
+GITHUB       :https://website-gilangranggaid.github.io/Website-gilangranggaid/
 
 
