@@ -18,7 +18,13 @@
 
 ## 🌐 Hubungi Saya
 EMAIL        :ranggalinggani@gmail.com
+
+
+
 WHATSAPP     :083895288348
+
+
+
 GITHUB       :https://website-gilangranggaid.github.io/Website-gilangranggaid/
 
 
