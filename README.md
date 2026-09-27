@@ -21,8 +21,6 @@
 
 ## 🌐 Hubungi Saya
 <p align="center">
-  <a href="mailto:ranggalinggani@gmail.com"><img src="https://shields.io" /></a>
-  
-</p>
+  <a href="mailto:ranggalinggani@gmail.com">
 
 
