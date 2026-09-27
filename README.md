@@ -25,6 +25,4 @@
   
 </p>
 
-<p align="center">
-  <img src="https://komarev.com" alt="Total Pengunjung" />
-</p>
+
