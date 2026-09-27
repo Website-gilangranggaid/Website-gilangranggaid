@@ -1,11 +1,8 @@
-<p align="center">
-  <img src="https://vercel.app" />
-</p>
 
 # Halo semuanya! 👋 Selamat datang di profil saya
 
 <div align="center">
-  <img src="https://demolab.com" alt="Typing SVG" />
+  <img src="https://cdn.phototourl.com/member/2026-09-27-fcc54a7a-f35c-4ef0-afb6-72649c5e2049.png" alt="Typing SVG" />
 </div>
 
 ## 🧑‍💻 Tentang Saya
@@ -20,7 +17,7 @@
 ---
 
 ## 🌐 Hubungi Saya
-<p align="center">
+
   <a href="mailto:ranggalinggani@gmail.com">
 
 
