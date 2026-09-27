@@ -17,14 +17,14 @@
 ---
 
 ## 🌐 Hubungi Saya
-EMAIL        :ranggalinggani@gmail.com
+EMAIL        :"ranggalinggani@gmail.com"
 
 
 
-WHATSAPP     :083895288348
+WHATSAPP     :"https://wa.me/6283895288348"
 
 
 
-GITHUB       :https://website-gilangranggaid.github.io/Website-gilangranggaid/
+GITHUB       :"https://website-gilangranggaid.github.io/Website-gilangranggaid/"
 
 
